@@ -15,6 +15,7 @@ module.exports = (app) => {
   r.get('/contact', (req, res)=>{
     res.render('contact');
   });
+
   r.get('/wish-list', productsCtrl.renderWishList);
   r.post('/wish-list/:id_product', productsCtrl.updateWishList)
   r.get('/:id_product', productsCtrl.getProductById);

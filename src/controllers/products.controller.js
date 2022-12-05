@@ -1,10 +1,24 @@
 const Product = require('./../models/products.model');
 
 exports.getAlllProducts = (req, res) => {
+  const tipoLibro = req.query.tipo;
   try {
-    const products = Product.getAlllProducts();
+    const products = Product.getAlllProducts(tipoLibro);
     res.render('home', {
       products
+    });
+  } catch (error) {
+    throw "Error al traer los productos";
+  }
+}
+
+exports.getProductById = (req, res) => {
+  const id = req.params.id_product;
+  try {
+    const product = Product.getProductById(id);
+    console.log('ID', id);
+    res.render('product_detail', {
+      product
     });
   } catch (error) {
     throw "Error al traer los productos";
