@@ -11,6 +11,9 @@ module.exports = (app) => {
   r.post('/login', loginCtrl.login);
   r.get('/registrer', loginCtrl.renderRegistrer);
   r.post('/registrer', loginCtrl.registrer);
+  r.get('/user', (req, res)=>{
+    res.render('user');
+  });
 
   r.get('/contact', (req, res)=>{
     res.render('contact');
