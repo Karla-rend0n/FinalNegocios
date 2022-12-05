@@ -61,6 +61,7 @@ class Product {
     const products = JSON.parse(productsTxt);
 
     const wishList = products.filter(p => p.wishList);
+    console.log(wishList)
     return wishList;
   }
 }

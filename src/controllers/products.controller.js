@@ -33,7 +33,10 @@ exports.updateWishList = (req, res) => {
 }
 
 exports.renderWishList = (req, res) => {
+  console.log("dedededdededededededdededede")
   const wishList = Product.getWishList();
+  console.log(wishList)
+ 
   res.render('wishList', {
     wishList
   });
