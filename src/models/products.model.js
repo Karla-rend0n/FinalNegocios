@@ -18,13 +18,30 @@ class Product {
     this.id = uuidv4();
   }
 
-  static getAlllProducts() {
+  static getAlllProducts(tipo) {
     try {
       const productsTxt = fs.readFileSync(dataPath);
       const products = JSON.parse(productsTxt);
+      if(tipo) {
+        const filterProducts = products.filter((p) => p.type.includes(tipo));
+        return filterProducts;
+      }
       return products;
     } catch (error) {
-      throw "Error al traer la info"
+      console.log(error);
+      return [];
+    }
+  }
+
+  static getProductById(id) {
+    try {
+      const productsTxt = fs.readFileSync(dataPath);
+      const products = JSON.parse(productsTxt);
+
+      const productDB = products.find((p) => p.id == id);
+      return productDB;
+    } catch (error) {
+      console.log(error);
     }
   }
 
