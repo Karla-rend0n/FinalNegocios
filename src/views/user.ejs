@@ -21,61 +21,31 @@
                         <div class="container-fluid">
     
                           <!-- Example split danger button -->
-                        <div class="btn-group">
-                          <a class="navbar-brand text-blanco" href="index.html">
-                            <img src="Img\logo.jpeg" alt="BookLife"  class="text-blanco d-inline-block align-text-top">
-                          </a>
-                          <button type="button" class="btn btn-logo text-blanco dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="visually-hidden">Toggle Dropdown</span>
-                          </button>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Lista de Deseos</a></li>
-                            <form class="btn-carrito" target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" >
-                              <input type="hidden" name="cmd" value="_s-xclick">
-                              <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
-                              <input type="image" src="https://www.sandbox.paypal.com/es_XC/i/btn/btn_viewcart_SM.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
-                              <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
-                              </form>
-                              
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Contáctanos</a></li>
-                          </ul>
+                          <div class="btn-group">
+                            <a class="navbar-brand text-blanco" href="index.html">
+                              <img src="/assets/logo.jpeg" alt="BookLife" class="text-blanco d-inline-block align-text-top">
+                            </a>
+                            
+            
+            
                         </div>
+                      </nav>
+                    </li>
+            
+                    <li class="navbar bg-negro ms-4">
+                      <a class="nav-link text-blanco" href="/book-life">Inicio</a>
+                    </li>
     
                         
                         </div>
                     </nav>
                 </li>
-                <li class="navbar bg-negro dropdown ms-4">
-                    <a class="nav-link dropdown-toggle text-blanco" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Libros
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Fantasía</a></li>
-                      <li><a class="dropdown-item" href="#">Manga</a></li>
-                      <li><a class="dropdown-item" href="#">Drama</a></li>
-                    </ul>
-                </li>
                 
-                <li class="navbar bg-negro ms-4">
-                    <a class="nav-link text-blanco" href="">E-Books</a>
-                </li>
                 
-                <li class="navbar bg-negro ms-4">
-                    <a class="nav-link text-blanco" href="">Sobre Nosotros</a>
-                </li>
             
             </div>
             
-            <div id="nav2"> 
-                <li class="navbar ms-4">
-                    <a class="btn text-blanco" href="login.html">Iniciar Sesión</a>
-    
-                </li>
-                <li class="navbar ms-4">
-                    <a class="btn text-blanco">Registrarse</a>
-                </li>
-            </div>
+           
             
         </ul>
     </div>
