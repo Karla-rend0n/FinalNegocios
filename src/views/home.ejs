@@ -8,11 +8,9 @@
 <body>
   <%- include('includes/nav.ejs') %>
 
-  <div class="p-2">
+  <div class="">
     <div class="container text-center">
       <div class="row">
-        
-        
         
         <div id="carouselExampleControls" class="carousel slide mt-25 p-5 m-5" data-bs-ride="carousel">
           <div class="carousel-inner">
@@ -35,31 +33,50 @@
             <span class="visually-hidden">Next</span>
           </button>
         </div>
-        <div class="col">
-          <div class="p-3">
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-              <% for(const product of products) { %>
-                <div class="col">
-                  <div class="card" style="width: 14rem; width: 16rem;">
-                    <img src="<%= product.img %>" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title"><%= product.title %></h5>
-                      <h6 class="card-subtitle mb-2 text-muted"><%= product.subtitle %></h6>
-                      <p class="card-text">$<%= product.price %></p>
-                      <div>
-                        <form action="/book-life/wish-list/<%= product.id %>" method="POST">
-                          <button style="background-color: white; border: 1px solid white;" class="card-link"><img src="<%= product.wishList ? '/assets/wish.png' : '/assets/like.png' %>"></button>
-                        </form>
-                        <a href="/book-life/<%= product.id %>" class="card-link d-flex justify-content-end"><img src="/assets/more.png" alt=""></a>
+
+        <div class="">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option0" checked>
+          <label class="form-check-label" for="exampleRadios1">
+            Ninguno
+          </label>
+        </div>
+        <div class="">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+          <label class="form-check-label" for="exampleRadios1">
+            A-Z
+          </label>
+        </div>
+        <div class="">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+          <label class="form-check-label" for="exampleRadios2">
+            Precio
+          </label>
+        
+          <div class="col">
+            <div class="p-3">
+              <div class="row row-cols-1 row-cols-md-3 g-4">
+                <% for(const product of products) { %>
+                  <div class="col">
+                    <div class="card" style="width: 14rem; width: 18rem;">
+                      <img src="<%= product.img %>" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title"><%= product.title %></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><%= product.subtitle %></h6>
+                        <p class="card-text">$<%= product.price %></p>
+                        <div>
+                          <form action="/book-life/wish-list/<%= product.id %>" method="POST">
+                            <button style="background-color: white; border: 1px solid white;" class="card-link"><img src="<%= product.wishList ? '/assets/wish.png' : '/assets/like.png' %>"></button>
+                          </form>
+                          <a href="/book-life/<%= product.id %>" class="card-link d-flex justify-content-end"><img src="/assets/more.png" alt=""></a>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              <% } %>
+                <% } %>
+              </div>
             </div>
           </div>
-
-        </div>
+        
       </div>
     </div>
   </div>
