@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/css/contact.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -24,75 +25,64 @@
                         <a class="navbar-brand text-blanco" href="/book-life">
                           <img src="/assets/logo.jpeg" alt="BookLife" class="text-blanco d-inline-block align-text-top">
                         </a>
+                        
+        
+        
                     </div>
                   </nav>
-                </li>
-                <li class="navbar bg-negro ms-4">
-                  <a class="nav-link text-blanco" href="/book-life">Inicio</a>
-                </li>
+                </li> 
                     </div>
                 </nav>
-            </li> 
-        </div>  
+            </li>  
+        
+        </div>   
     </ul>
 </div>
 
-  <div class="contact_form">
+<section class="form_wrap">
 
-    <div class="formulario">
-      <h1>Contactanos mediante este formulario</h1>
-      <h3>Escríbenos y en breve los pondremos en contacto contigo</h3>
-      <form action="submeter-formulario.php" method="post">
+  <section class="cantact_info">
+      <section class="info_title">
+          <span class="fa fa-user-circle"></span>
+          <h2>INFORMACION<br>DE CONTACTO</h2>
+      </section>
+      <section class="info_items">
+          <p><span class="fa fa-envelope"></span> BookLife@gmail.com</p>
+          <p><span class="fa fa-mobile"></span> +52 449 399 88 90</p>
+      </section>
+  </section>
 
-        <p>
+  <form action="" class="form_contact">
+      <h2>Envia un mensaje</h2>
+      <div class="user_info">
           <label for="nombre" class="colocar_nombre">Nombre
-            <span class="obligatorio">*</span>
+              <span class="obligatorio">*</span>
+            </label>
+              <input type="text" name="introducir_nombre" id="nombre" required="obligatorio" placeholder="Escribe tu nombre">
+
+              <label for="telefone" class="colocar_telefono">Teléfono
+              </label>
+                <input type="tel" name="introducir_telefono" id="telefono" placeholder="Escribe tu teléfono">
+
+                <label for="email" class="colocar_email">Email
+                  <span class="obligatorio">*</span>
+                </label>
+                  <input type="email" name="introducir_email" id="email" required="obligatorio" placeholder="Escribe tu Email">
+
+          <label for="mensaje" class="colocar_mensaje">Mensaje 
+              <span class="obligatorio">*</span>
           </label>
-          <input type="text" name="introducir_nombre" id="nombre" required="obligatorio"
-            placeholder="Escribe tu nombre">
-        </p>
+          <textarea id="mensaje" placeholder="Deja aquí tu comentario..."></textarea>
 
-        <p>
-          <label for="email" class="colocar_email">Email
-            <span class="obligatorio">*</span>
-          </label>
-          <input type="email" name="introducir_email" id="email" required="obligatorio" placeholder="Escribe tu Email">
-        </p>
+          <input type="button" value="Enviar Mensaje" id="btnSend">
+          <p class="aviso">
+                <span class="obligatorio"> * </span>Los campos son obligatorios.
+              </p>   
+      </div>
 
-        <p>
-          <label for="telefone" class="colocar_telefono">Teléfono
-          </label>
-          <input type="tel" name="introducir_telefono" id="telefono" placeholder="Escribe tu teléfono">
-        </p>
+  </form>
 
-
-        <p>
-          <label for="asunto" class="colocar_asunto">Asunto
-            <span class="obligatorio">*</span>
-          </label>
-          <input type="text" name="introducir_asunto" id="assunto" required="obligatorio"
-            placeholder="Escribe un asunto">
-        </p>
-
-        <p>
-          <label for="mensaje" class="colocar_mensaje">Mensaje
-            <span class="obligatorio">*</span>
-          </label>
-          <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio"
-            placeholder="Deja aquí tu comentario..."></textarea>
-        </p>
-
-        <button type="submit" name="enviar_formulario" id="enviar">
-          <p>Enviar</p>
-        </button>
-
-        <p class="aviso">
-          <span class="obligatorio"> * </span>Los campos son obligatorios.
-        </p>
-
-      </form>
-    </div>
-  </div>
+</section>
 
 </body>
 
