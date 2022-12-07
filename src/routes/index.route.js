@@ -15,7 +15,7 @@ module.exports = (app) => {
     res.render('user');
   });
   r.get('/user-edit', (req, res)=>{
-    res.render('user');
+    res.render('user-edit');
   });
   
   r.get('/contact', (req, res)=>{
