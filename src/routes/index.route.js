@@ -24,11 +24,11 @@ module.exports = (app) => {
   r.get('/crud', (req, res)=>{
     res.render('crud');
   });
-  r.get('/mayormenor', (req, res)=>{
+  r.get('/mayor', (req, res)=>{
     res.render('mayormenor');
   });
 
-  r.get('/menormayor', (req, res)=>{
+  r.get('/menor', (req, res)=>{
     res.render('menormayor');
   });
 
