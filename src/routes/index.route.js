@@ -21,6 +21,9 @@ module.exports = (app) => {
   r.get('/contact', (req, res)=>{
     res.render('contact');
   });
+  r.get('/crud', (req, res)=>{
+    res.render('crud');
+  });
 
   r.get('/wish-list', productsCtrl.renderWishList);
   r.post('/wish-list/:id_product', productsCtrl.updateWishList)
