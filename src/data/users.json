@@ -4,6 +4,7 @@
         "user": "eguzman@correo.com",
         "password": "1234",
         "name": "Sarai",
+        "rol":"user",
         "lastName": "Guzman"
     },
     {
@@ -11,6 +12,7 @@
         "user": "krendon@correo.com",
         "password": "1234",
         "name": "Karla",
+        "rol":"admin",
         "lastName": "Rendon"
     },
     {
@@ -18,6 +20,7 @@
         "user": "McFly@correo.com",
         "password": "1234",
         "name": "Pablo",
+        "rol":"user",
         "lastName": "Perez"
     }
 ]
