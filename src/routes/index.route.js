@@ -32,6 +32,10 @@ module.exports = (app) => {
     res.render('menormayor');
   });
 
+  r.get('/about', (req, res)=>{
+    res.render('acercade');
+  });
+
   r.get('/alfabetico', (req, res)=>{
     res.render('alfabetico');
   });
