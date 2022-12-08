@@ -23,11 +23,19 @@ class User {
       const usersTxt = fs.readFileSync(dataPath);
       const users = JSON.parse(usersTxt);
 
-      const userDB = users.find(u => u.user == user && u.password == pass);
-      if(!userDB) {
+      const userDB = users.find(u => u.user == user && u.password == pass && u.rol == "admin");
+      const adminDB = users.find(u => u.user == user && u.password == pass && u.rol == "user");
+
+      const admn = "a";
+      const us = "b";
+
+      if(!userDB && !adminDB) {
         return false;
+      }else if(userDB && !adminDB){
+        return us;
+      }else if(!userDB && adminDB){
+        return admn;
       }
-      return true;
     } catch (error) {
       console.log(error);
       return false;
