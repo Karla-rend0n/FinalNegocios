@@ -18,13 +18,17 @@ class Product {
     this.id = uuidv4();
   }
 
-  static getAlllProducts(tipo) {
+  static getAlllProducts(tipo,categoria) {
     try {
       const productsTxt = fs.readFileSync(dataPath);
       const products = JSON.parse(productsTxt);
       if(tipo) {
         const filterProducts = products.filter((p) => p.type.includes(tipo));
         return filterProducts;
+      }
+      if(categoria) {
+        const filterProductos = products.filter((c) => c.category.includes(categoria));
+        return filterProductos;
       }
       return products;
     } catch (error) {
