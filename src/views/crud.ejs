@@ -1,0 +1,379 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Admin Crud</title>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="/css/crud.css">
+</head>
+
+<body className='snippet-body'>
+    <div class="px-0 bg-light">
+        <div class="d-flex">
+            <div class="d-flex align-items-center " id="navbar"> <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbar-items" aria-controls="navbarSupportedContent"
+                    aria-expanded="true" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button> <a
+                    class="text-decoration-none fs14 ps-2" href="#">BookLife<span class="fs13 pe-2">.com</span></a>
+            </div>
+            <div id="navbar2" class="d-flex justify-content-end pe-4"> <span class="far fa-user-circle "></span> 
+            <a class="btn text-negro" href="/booklife/login">Cerrar sesion</a> </div>
+        </div>
+        <div class="d-md-flex">
+            <ul id="navbar-items" class="p-0">
+                <li> <span class="fas fa-th-list"></span> <span class="ps-3 name">Dashboard</span> </li>
+                <li> <span class="fas fa-chart-line"></span> <span class="ps-3 name">Transacciones</span> </li>
+                <li> <span class="fas fa-clipboard-check"></span> <span class="ps-3 name">Finanzas</span> </li>
+                <li> <span class="fas fa-suitcase-rolling"></span> <span class="ps-3 name">Fraudes</span> </li>
+                <li> <span class="fas fa-calendar-alt"></span> <span class="ps-3 name">Cuenta</span> </li>
+                <li> <span class="fas fa-comment-alt"></span> <span class="ps-3 name">Solicitudes</span> </li>
+                <li> <span class="fas fa-store-alt"></span> <span class="ps-3 name">Productos</span> </li>
+            </ul>
+            <div id="topnavbar">
+                <div class="topnav mb-3">
+                    <div class="d-flex px-1"> <a href="#home" class="active">Productos</a> <a href="#news">Usuarios</a> <a
+                            href="#contact">Compañia<span class="px-1">&</span>mid</a> <a href="#contact">Cuenta</a>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center mb-3 px-md-3 px-2"> 
+                    <div class="table-responsive px-2">
+                        <div class="container mt-5">
+                            <!--Show the app here.-->
+                            <div class="justify-content-left" id="container" style="width:700px;"></div>
+                            </div>
+                </div>
+                
+                    <script>
+                        // <![CDATA[  <-- For SVG support
+                        if ('WebSocket' in window) {
+                            (function () {
+                                function refreshCSS() {
+                                    var sheets = [].slice.call(document.getElementsByTagName("link"));
+                                    var head = document.getElementsByTagName("head")[0];
+                                    for (var i = 0; i < sheets.length; ++i) {
+                                        var elem = sheets[i];
+                                        var parent = elem.parentElement || head;
+                                        parent.removeChild(elem);
+                                        var rel = elem.rel;
+                                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+                                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+                                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+                                        }
+                                        parent.appendChild(elem);
+                                    }
+                                }
+                                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+                                var address = protocol + window.location.host + window.location.pathname + '/ws';
+                                var socket = new WebSocket(address);
+                                socket.onmessage = function (msg) {
+                                    if (msg.data == 'reload') window.location.reload();
+                                    else if (msg.data == 'refreshcss') refreshCSS();
+                                };
+                                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                                    console.log('Live reload enabled.');
+                                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+                                }
+                            })();
+                        }
+                        else {
+                            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+                        }
+                        // ]]>
+                    </script>
+                </div>
+                <div class="d-flex align-items-center justify-content-between px-3 mt-3">
+                    <div class="bg-bdark fs13"> <span>Pagina</span> <input class="input-10 text-center" type="text"
+                            value="1"> <span><span class="px-1">of</span>1</span> </div>
+                    <div class="d-flex justify-content-end bg-bdark fs13"> <span class="pe-1">Show</span> <input
+                            class="input-10" type="number" value="25"> <span class="ps-2"><span
+                                class="pe-2">/</span>Pagina</span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var crudApp = new function () {
+    
+            // An array of JSON objects with values.
+            this.myBooks = [
+                { ID: '1', Titulo: 'La Historia Del Loco', Categoria: 'Terror', Precio: 370.27 },
+                { ID: '2', Titulo: 'El Sutil Arte De Que Te Importe Una Mierda', Categoria: 'Superación', Precio: 232 },
+                { ID: '3', Titulo: 'Narnia Libro 1', Categoria: 'Fantasia', Precio: 210.40 },
+                { ID: '4', Titulo: 'Harry Potter y La Piedra Filosofal', Categoria: 'Fantasia', Precio: 300 },
+                { ID: '5', Titulo: 'Antes De Ti"', Categoria: 'Romance', Precio: 463.8 },
+                { ID: '6', Titulo: 'Orgullo y Prejuicio', Categoria: 'Fantasia', Precio: 290 },
+                { ID: '7', Titulo: 'La Chica Salvaje', Categoria: 'Fantasia', Precio: 464.5 },
+                { ID: '8', Titulo: 'Sleeping Beauties', Categoria: 'Fantasia', Precio: 464.5},
+                { ID: '9', Titulo: 'Chainsaw Man Vol.1', Categoria: 'Fantasia', Precio: 150.5 },
+                { ID: '10', Titulo: 'REC', Categoria: 'Terror' , Precio: 1420 },
+
+            ]
+    
+            this.category = ['Fantasia', 'Romance', 'Terror', 'Manga', 'Superación'];
+            this.col = [];
+    
+            this.createTable = function () {
+    
+                // Extract value for table header.
+                for (var i = 0; i < this.myBooks.length; i++) {
+                    for (var key in this.myBooks[i]) {
+                        if (this.col.indexOf(key) === -1) {
+                            this.col.push(key);
+                        }
+                    }
+                }
+    
+                // CREATE A TABLE.
+                var table = document.createElement('table');
+                table.setAttribute('id', 'booksTable');     // Seet table id.
+    
+                var tr = table.insertRow(-1);               // Create a row (for header).
+    
+                for (var h = 0; h < this.col.length; h++) {
+                    // Add table header.
+                    var th = document.createElement('th');
+                    th.innerHTML = this.col[h].replace('_', ' ');
+                    tr.appendChild(th);
+                }
+    
+                // Add rows using JSON data.
+                for (var i = 0; i < this.myBooks.length; i++) {
+    
+                    tr = table.insertRow(-1);           // Create a new row.
+    
+                    for (var j = 0; j < this.col.length; j++) {
+                        var tabCell = tr.insertCell(-1);
+                        tabCell.innerHTML = this.myBooks[i][this.col[j]];
+                    }
+    
+                    // Dynamically create and add elements to table cells with events.
+    
+                    this.td = document.createElement('td');
+    
+                    // *** CANCEL OPTION.
+                    tr.appendChild(this.td);
+                    var lblCancel = document.createElement('label');
+                    lblCancel.innerHTML = '✖';
+                    lblCancel.setAttribute('onclick', 'crudApp.Cancel(this)');
+                    lblCancel.setAttribute('style', 'display:none;');
+                    lblCancel.setAttribute('title', 'Cancel');
+                    lblCancel.setAttribute('id', 'lbl' + i);
+                    this.td.appendChild(lblCancel);
+    
+                    // *** SAVE.
+                    tr.appendChild(this.td);
+                    var btSave = document.createElement('input');
+    
+                    btSave.setAttribute('type', 'button');      // SET ATTRIBUTES.
+                    btSave.setAttribute('value', 'Save');
+                    btSave.setAttribute('id', 'Save' + i);
+                    btSave.setAttribute('style', 'display:none;');
+                    btSave.setAttribute('onclick', 'crudApp.Save(this)');       // ADD THE BUTTON's 'onclick' EVENT.
+                    this.td.appendChild(btSave);
+    
+                    // *** UPDATE.
+                    tr.appendChild(this.td);
+                    var btUpdate = document.createElement('input');
+    
+                    btUpdate.setAttribute('type', 'button');    // SET ATTRIBUTES.
+                    btUpdate.setAttribute('value', 'Update');
+                    btUpdate.setAttribute('id', 'Edit' + i);
+                    btUpdate.setAttribute('style', 'background-color:#44CCEB;');
+                    btUpdate.setAttribute('onclick', 'crudApp.Update(this)');   // ADD THE BUTTON's 'onclick' EVENT.
+                    this.td.appendChild(btUpdate);
+    
+                    // *** DELETE.
+                    this.td = document.createElement('th');
+                    tr.appendChild(this.td);
+                    var btDelete = document.createElement('input');
+                    btDelete.setAttribute('type', 'button');    // SET INPUT ATTRIBUTE.
+                    btDelete.setAttribute('value', 'Delete');
+                    btDelete.setAttribute('style', 'background-color:#ED5650;');
+                    btDelete.setAttribute('onclick', 'crudApp.Delete(this)');   // ADD THE BUTTON's 'onclick' EVENT.
+                    this.td.appendChild(btDelete);
+                }
+    
+    
+                // ADD A ROW AT THE END WITH BLANK TEXTBOXES AND A DROPDOWN LIST (FOR NEW ENTRY).
+    
+                tr = table.insertRow(-1);           // CREATE THE LAST ROW.
+    
+                for (var j = 0; j < this.col.length; j++) {
+                    var newCell = tr.insertCell(-1);
+                    if (j >= 1) {
+    
+                        if (j == 2) {   // WE'LL ADD A DROPDOWN LIST AT THE SECOND COLUMN (FOR Categoria).
+    
+                            var select = document.createElement('select');      // CREATE AND ADD A DROPDOWN LIST.
+                            select.innerHTML = '<option value=""></option>';
+                            for (k = 0; k < this.category.length; k++) {
+                                select.innerHTML = select.innerHTML +
+                                    '<option value="' + this.category[k] + '">' + this.category[k] + '</option>';
+                            }
+                            newCell.appendChild(select);
+                        }
+                        else {
+                            var tBox = document.createElement('input');          // CREATE AND ADD A TEXTBOX.
+                            tBox.setAttribute('type', 'text');
+                            tBox.setAttribute('value', '');
+                            newCell.appendChild(tBox);
+                        }
+                    }
+                }
+    
+                this.td = document.createElement('td');
+                tr.appendChild(this.td);
+    
+                var btNew = document.createElement('input');
+    
+                btNew.setAttribute('type', 'button');       // SET ATTRIBUTES.
+                btNew.setAttribute('value', 'Create');
+                btNew.setAttribute('id', 'New' + i);
+                btNew.setAttribute('style', 'background-color:#207DD1;');
+                btNew.setAttribute('onclick', 'crudApp.CreateNew(this)');       // ADD THE BUTTON's 'onclick' EVENT.
+                this.td.appendChild(btNew);
+    
+                var div = document.getElementById('container');
+                div.innerHTML = '';
+                div.appendChild(table);    // ADD THE TABLE TO THE WEB PAGE.
+            };
+    
+            // ****** OPERATIONS START.
+    
+            // CANCEL.
+            this.Cancel = function (oButton) {
+    
+                // HIDE THIS BUTTON.
+                oButton.setAttribute('style', 'display:none; float:none;');
+    
+                var activeRow = oButton.parentNode.parentNode.rowIndex;
+    
+                // HIDE THE SAVE BUTTON.
+                var btSave = document.getElementById('Save' + (activeRow - 1));
+                btSave.setAttribute('style', 'display:none;');
+    
+                // SHOW THE UPDATE BUTTON AGAIN.
+                var btUpdate = document.getElementById('Edit' + (activeRow - 1));
+                btUpdate.setAttribute('style', 'display:block; margin:0 auto; background-color:#44CCEB;');
+    
+                var tab = document.getElementById('booksTable').rows[activeRow];
+    
+                for (i = 0; i < this.col.length; i++) {
+                    var td = tab.getElementsByTagName("td")[i];
+                    td.innerHTML = this.myBooks[(activeRow - 1)][this.col[i]];
+                }
+            }
+    
+    
+            // EDIT DATA.
+            this.Update = function (oButton) {
+                var activeRow = oButton.parentNode.parentNode.rowIndex;
+                var tab = document.getElementById('booksTable').rows[activeRow];
+    
+                // SHOW A DROPDOWN LIST WITH A LIST OF CATEGORIES.
+                for (i = 1; i < 4; i++) {
+                    if (i == 2) {
+                        var td = tab.getElementsByTagName("td")[i];
+                        var ele = document.createElement('select');      // DROPDOWN LIST.
+                        ele.innerHTML = '<option value="' + td.innerText + '">' + td.innerText + '</option>';
+                        for (k = 0; k < this.category.length; k++) {
+                            ele.innerHTML = ele.innerHTML +
+                                '<option value="' + this.category[k] + '">' + this.category[k] + '</option>';
+                        }
+                        td.innerText = '';
+                        td.appendChild(ele);
+                    }
+                    else {
+                        var td = tab.getElementsByTagName("td")[i];
+                        var ele = document.createElement('input');      // TEXTBOX.
+                        ele.setAttribute('type', 'text');
+                        ele.setAttribute('value', td.innerText);
+                        td.innerText = '';
+                        td.appendChild(ele);
+                    }
+                }
+    
+                var lblCancel = document.getElementById('lbl' + (activeRow - 1));
+                lblCancel.setAttribute('style', 'cursor:pointer; display:block; width:20px; float:left; position: absolute;');
+    
+                var btSave = document.getElementById('Save' + (activeRow - 1));
+                btSave.setAttribute('style', 'display:block; margin-left:30px; float:left; background-color:#2DBF64;');
+    
+                // HIDE THIS BUTTON.
+                oButton.setAttribute('style', 'display:none;');
+            };
+    
+    
+            // DELETE DATA.
+            this.Delete = function (oButton) {
+                var activeRow = oButton.parentNode.parentNode.rowIndex;
+                this.myBooks.splice((activeRow - 1), 1);    // DELETE THE ACTIVE ROW.
+                this.createTable();                         // REFRESH THE TABLE.
+            };
+    
+            // SAVE DATA.
+            this.Save = function (oButton) {
+                var activeRow = oButton.parentNode.parentNode.rowIndex;
+                var tab = document.getElementById('booksTable').rows[activeRow];
+    
+                // UPDATE myBooks ARRAY WITH VALUES.
+                for (i = 1; i < this.col.length; i++) {
+                    var td = tab.getElementsByTagName("td")[i];
+                    if (td.childNodes[0].getAttribute('type') == 'text' || td.childNodes[0].tagName == 'SELECT') {  // CHECK IF ELEMENT IS A TEXTBOX OR SELECT.
+                        this.myBooks[(activeRow - 1)][this.col[i]] = td.childNodes[0].value;      // SAVE THE VALUE.
+                    }
+                }
+                this.createTable();     // REFRESH THE TABLE.
+            }
+    
+            // CREATE NEW.
+            this.CreateNew = function (oButton) {
+                var activeRow = oButton.parentNode.parentNode.rowIndex;
+                var tab = document.getElementById('booksTable').rows[activeRow];
+                var obj = {};
+    
+                // ADD NEW VALUE TO myBooks ARRAY.
+                for (i = 1; i < this.col.length; i++) {
+                    var td = tab.getElementsByTagName("td")[i];
+                    if (td.childNodes[0].getAttribute('type') == 'text' || td.childNodes[0].tagName == 'SELECT') {      // CHECK IF ELEMENT IS A TEXTBOX OR SELECT.
+                        var txtVal = td.childNodes[0].value;
+                        if (txtVal != '') {
+                            obj[this.col[i]] = txtVal.trim();
+                        }
+                        else {
+                            obj = '';
+                            alert('all fields are compulsory');
+                            break;
+                        }
+                    }
+                }
+                obj[this.col[0]] = this.myBooks.length + 1;     // NEW ID.
+    
+                if (Object.keys(obj).length > 0) {      // CHECK IF OBJECT IS NOT EMPTY.
+                    this.myBooks.push(obj);             // PUSH (ADD) DATA TO THE JSON ARRAY.
+                    this.createTable();                 // REFRESH THE TABLE.
+                }
+            }
+    
+            // ****** OPERATIONS END.
+        }
+    
+        crudApp.createTable();
+    </script>
+    <script type='text/javascript'
+        src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript'></script>
+    <script type='text/javascript'>var myLink = document.querySelector('a[href="#"]');
+        myLink.addEventListener('click', function (e) {
+            e.preventDefault();
+        });</script>
+
+</body>
+
+</html>
