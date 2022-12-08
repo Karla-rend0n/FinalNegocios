@@ -12,9 +12,11 @@ exports.login = (req, res) => {
 
   const login = User.loginUser(usuario, password);
   console.log(login);
-  if(login) {
+  if(login == "b") {
+    res.redirect('/book-life/registrer');
+  }else if(login == "a"){
     res.redirect('/book-life');
-  }else {
+  }else{
     res.redirect('/book-life/login');
   }
 }
