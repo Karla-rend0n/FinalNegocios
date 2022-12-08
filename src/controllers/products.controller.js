@@ -2,8 +2,9 @@ const Product = require('./../models/products.model');
 
 exports.getAlllProducts = (req, res) => {
   const tipoLibro = req.query.tipo;
+  const catLibro = req.query.categoria;
   try {
-    const products = Product.getAlllProducts(tipoLibro);
+    const products = Product.getAlllProducts(tipoLibro,catLibro);
     res.render('home', {
       products
     });
