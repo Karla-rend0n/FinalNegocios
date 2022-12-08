@@ -10,7 +10,7 @@
   <%- include('includes/nav.ejs') %>
 
   <div class="">
-    <div class="container text-center">
+    <div class="container">
       <div class="row">
         
         <div id="carouselExampleControls" class="carousel slide mt-25 p-5 m-5" data-bs-ride="carousel">
@@ -35,22 +35,11 @@
           </button>
         </div>
 
-        <div class="">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option0" checked>
-          <label class="form-check-label" for="exampleRadios1">
-            Ninguno
-          </label>
+        <div class="btn-group" data-toggle="buttons">
+            <a href="/book-life/mayor" class="btn btn-primary">Mayor Precio</a>
+            <a href="/book-life/menor" class="btn btn-primary">Mayor Precio</a>
+            <a href="/book-life/alfabetico" class="btn btn-primary">Mayor Precio</a>
         </div>
-        <div class="">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-          
-        <a href="/book-life/mayor">Mayor a Menor</a>
-        </div>
-        <div class="">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-          <label class="form-check-label" for="exampleRadios2">
-            Precio
-          </label>
         
           <div class="col">
             <div class="p-3">
@@ -77,7 +66,7 @@
             </div>
           </div>
         
-      </div>
+      
     </div>
   </div>
 
