@@ -24,7 +24,9 @@ module.exports = (app) => {
   r.get('/crud', (req, res)=>{
     res.render('crud');
   });
-
+  r.get('/mayor', (req, res)=>{
+    res.render('mayormenor');
+  });
   r.get('/wish-list', productsCtrl.renderWishList);
   r.post('/wish-list/:id_product', productsCtrl.updateWishList)
   r.get('/:id_product', productsCtrl.getProductById);
