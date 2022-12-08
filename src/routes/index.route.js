@@ -24,9 +24,14 @@ module.exports = (app) => {
   r.get('/crud', (req, res)=>{
     res.render('crud');
   });
-  r.get('/mayor', (req, res)=>{
+  r.get('/mayormenor', (req, res)=>{
     res.render('mayormenor');
   });
+
+  r.get('/menormayor', (req, res)=>{
+    res.render('menormayor');
+  });
+
   r.get('/alfabetico', (req, res)=>{
     res.render('alfabetico');
   });
