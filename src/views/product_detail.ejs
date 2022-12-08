@@ -47,8 +47,9 @@
             <div class="col-xs-6">
               <button type="button" class="btn btn-primary shop-button"><a href="<%= product.btn %>" class="card-link"><img
                     src="/assets/añadircarro.png" alt=""></a></button>
-              <button type="button" class="btn btn-danger shop-button"><a href="#" class="card-link"><img
-                    src="/assets/like.png" alt=""></a></button>
+                    <form action="/book-life/wish-list/<%= product.id %>" method="POST">
+                      <button style="background-color: white; border: 1px solid white;" class="card-link"><img src="<%= product.wishList ? '/assets/wish.png' : '/assets/like.png' %>"></button>
+                    </form>
               <button type="button" class="btn btn-success shop-button mx-3 ">Comprar Ahora</button>
             </div>
           </div>
